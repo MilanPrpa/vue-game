@@ -33,7 +33,7 @@ new Vue({
 			this.checkWin();
 		},
 		heal: function() {
-
+			this.playerHealth += this.damageCalc(6, 15)
 		},
 		quit: function() {
 
