@@ -4,33 +4,47 @@ new Vue({
 	data: {
 		playerHealth: 100,
 		monsterHealth: 100,
-		gameIsRunning: false
+		gameIsRunning: false,
+		hideSpecial: false,
+		hideHeal: false
+
 	},
 	methods: {
 		startGame: function() {
 			this.gameIsRunning = true;
 			this.playerHealth = 100;
 			this.monsterHealth = 100;
+
 		},
 		damage: function(min, max) {
 			return Math.max(Math.floor(Math.random() * max) + 1, min);
 		},
 		attack: function() {
-			this.monsterHealth -= this.damage(5, 8)
+			this.monsterHealth -= this.damage(3, 10)
 				if (this.checkWin()) {
 					return;
 				}
-
-			this.playerHealth -= this.damage(7, 10)
+				this.monsterAttack();
+			
+		},
+		// refactor since monster attack is always the same
+		monsterAttack: function() {
+			this.playerHealth -= this.damage(5, 12)
 				 this.checkWin();
 		},
+		// Can only be used once; use carefully!!
 		special: function() {
+			this.monsterHealth -= this.damage(10, 20)
+				return this.hideSpecial = true;
 
 		},
+		// Also, only used once.
 		heal: function() {
-
+			this.playerHealth += this.damage(5, 10)
+			return this.hideHeal = true;
 		},
 		quit: function() {
+			
 
 		},
 		checkWin: function() {

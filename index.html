@@ -12,7 +12,7 @@
             <h1 class="text-center">YOU</h1>
             <div class="healthbar">
                 <div class="healthbar text-center" 
-                style="background-color: green; margin: 0; color: white;"
+                style="background-color: blue; margin: 0; color: white;"
                 :style="{width: playerHealth + '%'}">
                 {{playerHealth}}
                 </div>
@@ -22,7 +22,7 @@
             <h1 class="text-center">MONSTER</h1>
             <div class="healthbar">
                 <div class="healthbar text-center" 
-                style="background-color: green; margin: 0; color: white;"
+                style="background-color: red; margin: 0; color: white;"
                 :style="{width: monsterHealth + '%'}">
                 {{monsterHealth}}
                 </div>
@@ -37,9 +37,9 @@
     <section class="row controls" v-else>
         <div class="small-12 columns">
             <button @click="attack" id="attack">ATTACK</button>
-            <button id="special-attack">SPECIAL ATTACK</button>
-            <button id="heal">HEAL</button>
-            <button id="give-up">GIVE UP</button>
+            <button @click="special" v-if="!hideSpecial" id="special-attack">SPECIAL ATTACK</button>
+            <button @click="heal" v-if="!hideHeal" id="heal">HEAL</button>
+            <button @click="quit" id="give-up">GIVE UP</button>
         </div>
     </section>
     <section class="row log">
